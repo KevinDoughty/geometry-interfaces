@@ -1,2 +1,633 @@
-(function(a,b){'object'==typeof exports&&'object'==typeof module?module.exports=b():'function'==typeof define&&define.amd?define([],b):'object'==typeof exports?exports.GeometryInterfaces=b():a.GeometryInterfaces=b()})(this,function(){return function(a){function b(d){if(c[d])return c[d].exports;var e=c[d]={i:d,l:!1,exports:{}};return a[d].call(e.exports,e,e.exports,b),e.l=!0,e.exports}var c={};return b.m=a,b.c=c,b.d=function(a,c,d){b.o(a,c)||Object.defineProperty(a,c,{configurable:!1,enumerable:!0,get:d})},b.n=function(a){var c=a&&a.__esModule?function(){return a['default']}:function(){return a};return b.d(c,'a',c),c},b.o=function(a,b){return Object.prototype.hasOwnProperty.call(a,b)},b.p='',b(b.s=3)}([function(a,b,c){'use strict';var d=c(1),e=c(2);Object(d.b)();var f=function(a){function b(c){const d=arguments.length;if(0===d)a.call(this,[1,0,0,1,0,0]);else if(1!==d)throw new Error('Wrong number of arguments to DOMMatrix constructor.');else if('string'==typeof c)throw new Error('CSS transformList arg not yet implemented.');else c instanceof b?a.call(this,c._matrix):(c instanceof Float32Array||c instanceof Float64Array||c instanceof Array)&&a.call(this,c)}a&&(b.__proto__=a),b.prototype=Object.create(a&&a.prototype),b.prototype.constructor=b;var c={a:{},b:{},c:{},d:{},e:{},f:{},m11:{},m12:{},m13:{},m14:{},m21:{},m22:{},m23:{},m24:{},m31:{},m32:{},m33:{},m34:{},m41:{},m42:{},m43:{},m44:{}};return b.prototype.multiplySelf=function(a){if(!(a instanceof b))throw new Error('The argument to multiplySelf must be an instance of DOMMatrix');return Object(e.b)(this,a,this),a.is2D||(this._is2D=!1),this},b.prototype.preMultiplySelf=function(a){if(!(a instanceof b))throw new Error('The argument to multiplySelf must be an instance of DOMMatrix');return Object(e.b)(a,this,this),a.is2D||(this._is2D=!1),this},b.prototype.translateSelf=function(a,c,d){if(void 0===d&&(d=0),1===arguments.length)throw new Error('The first two arguments (X and Y translation values) are required (the third, Z translation, is optional).');const e=new b([1,0,0,0,0,1,0,0,0,0,1,0,a,c,d,1]);return this.multiplySelf(e),0!=d&&(this._is2D=!1),this},b.prototype.scaleSelf=function(a,c,d){return void 0===c&&(c=0),void 0===d&&(d=0),this.translateSelf(c,d),this.multiplySelf(new b([a,0,0,a,0,0])),this.translateSelf(-c,-d),this},b.prototype.scale3dSelf=function(a,c,d,e){return void 0===c&&(c=0),void 0===d&&(d=0),void 0===e&&(e=0),this.translateSelf(c,d,e),this.multiplySelf(new b([a,0,0,0,0,a,0,0,0,0,a,0,0,0,0,1])),this.translateSelf(-c,-d,-e),this},b.prototype.scaleNonUniformSelf=function(a,c,d,e,f,g){return void 0===c&&(c=1),void 0===d&&(d=1),void 0===e&&(e=0),void 0===f&&(f=0),void 0===g&&(g=0),this.translateSelf(e,f,g),this.multiplySelf(new b([a,0,0,0,0,c,0,0,0,0,d,0,0,0,0,1])),this.translateSelf(-e,-f,-g),(1!==d||0!==g)&&(this._is2D=!1),this},b.prototype.rotateSelf=function(a,b,c){void 0===b&&(b=0),void 0===c&&(c=0),this.translateSelf(b,c);var d=[0,0,1],e=d[0],f=d[1],g=d[2];return this.rotateAxisAngleSelf(e,f,g,a),this.translateSelf(-b,-c),this},b.prototype.rotateFromVectorSelf=function(){throw new Error('rotateFromVectorSelf is not implemented yet.')},b.prototype.rotateAxisAngleSelf=function(a,c,d,f){const g=new b(Object(e.c)(a,c,d,f));return this.multiplySelf(g),this},b.prototype.skewXSelf=function(){throw new Error('skewXSelf is not implemented yet.')},b.prototype.skewYSelf=function(){throw new Error('skewYSelf is not implemented yet.')},b.prototype.invertSelf=function(){throw new Error('invertSelf is not implemented yet.')},b.prototype.setMatrixValue=function(){throw new Error('setMatrixValue is not implemented yet.')},c.a.get=function(){return this.m11},c.b.get=function(){return this.m12},c.c.get=function(){return this.m21},c.d.get=function(){return this.m22},c.e.get=function(){return this.m41},c.f.get=function(){return this.m42},c.m11.get=function(){return this._matrix[0]},c.m12.get=function(){return this._matrix[4]},c.m13.get=function(){return this._matrix[8]},c.m14.get=function(){return this._matrix[12]},c.m21.get=function(){return this._matrix[1]},c.m22.get=function(){return this._matrix[5]},c.m23.get=function(){return this._matrix[9]},c.m24.get=function(){return this._matrix[13]},c.m31.get=function(){return this._matrix[2]},c.m32.get=function(){return this._matrix[6]},c.m33.get=function(){return this._matrix[10]},c.m34.get=function(){return this._matrix[14]},c.m41.get=function(){return this._matrix[3]},c.m42.get=function(){return this._matrix[7]},c.m43.get=function(){return this._matrix[11]},c.m44.get=function(){return this._matrix[15]},c.a.set=function(a){this.m11=a},c.b.set=function(a){this.m12=a},c.c.set=function(a){this.m21=a},c.d.set=function(a){this.m22=a},c.e.set=function(a){this.m41=a},c.f.set=function(a){this.m42=a},c.m11.set=function(a){this._matrix[0]=a},c.m12.set=function(a){this._matrix[4]=a},c.m13.set=function(a){this._matrix[8]=a},c.m14.set=function(a){this._matrix[12]=a},c.m21.set=function(a){this._matrix[1]=a},c.m22.set=function(a){this._matrix[5]=a},c.m23.set=function(a){this._matrix[9]=a},c.m24.set=function(a){this._matrix[13]=a},c.m31.set=function(a){this._matrix[2]=a},c.m32.set=function(a){this._matrix[6]=a},c.m33.set=function(a){this._matrix[10]=a},c.m34.set=function(a){this._matrix[14]=a},c.m41.set=function(a){this._matrix[3]=a},c.m42.set=function(a){this._matrix[7]=a},c.m43.set=function(a){this._matrix[11]=a},c.m44.set=function(a){this._matrix[15]=a},Object.defineProperties(b.prototype,c),b}(d.a);b.a=f},function(a,b,c){'use strict';function d(){h||(h=function(){function a(a){if(void 0===a&&(a=[]),!(this instanceof e.a))throw new TypeError('DOMMatrixReadOnly can\'t be instantiated directly. Use DOMMatrix instead.');var b=a.length;if(void 0===b||6!==b&&16!==b)throw new TypeError('DOMMatrix constructor argument "numberSequence" must be an array-like with 6 or 16 numbers.');this._matrix=new Float64Array(g),this._isIdentity=!0,this._is2D=6===b,Object(f.a)(a,this)}var b={is2D:{},isIdentity:{},a:{},b:{},c:{},d:{},e:{},f:{},m11:{},m12:{},m13:{},m14:{},m21:{},m22:{},m23:{},m24:{},m31:{},m32:{},m33:{},m34:{},m41:{},m42:{},m43:{},m44:{}};return a.prototype.translate=function(a,b,c){return void 0===c&&(c=0),new e.a(this).translateSelf(a,b,c)},a.prototype.scale=function(a,b,c){return void 0===b&&(b=0),void 0===c&&(c=0),new e.a(this).scaleSelf(a,b,c)},a.prototype.scale3d=function(a,b,c,d){return void 0===b&&(b=0),void 0===c&&(c=0),void 0===d&&(d=0),new e.a(this).scale3dSelf(a,b,c,d)},a.prototype.scaleNonUniform=function(a,b,c,d,f,g){return void 0===b&&(b=1),void 0===c&&(c=1),void 0===d&&(d=0),void 0===f&&(f=0),void 0===g&&(g=0),new e.a(this).scaleNonUniformSelf(a,b,c,d,f,g)},a.prototype.rotate=function(a,b,c){return void 0===b&&(b=0),void 0===c&&(c=0),new e.a(this).rotateSelf(a,b,c)},a.prototype.rotateFromVector=function(){throw new Error('rotateFromVector is not implemented yet.')},a.prototype.rotateAxisAngle=function(a,b,c,d){return new e.a(this).rotateAxisAngleSelf(a,b,c,d)},a.prototype.skewX=function(){throw new Error('skewX is not implemented yet.')},a.prototype.skewY=function(){throw new Error('skewY is not implemented yet.')},a.prototype.multiply=function(a){return new e.a(this).multiplySelf(a)},a.prototype.flipX=function(){throw new Error('flipX is not implemented yet.')},a.prototype.flipY=function(){throw new Error('flipY is not implemented yet.')},a.prototype.inverse=function(){throw new Error('inverse is not implemented yet.')},a.prototype.transformPoint=function(){throw new Error('transformPoint is not implemented yet.')},a.prototype.toFloat32Array=function(){return Float32Array.from(this._matrix)},a.prototype.toFloat64Array=function(){return Float64Array.from(this._matrix)},b.is2D.get=function(){return this._is2D},b.isIdentity.get=function(){for(var a=this,b=0,c=this._matrix.length;b<c;b+=1)if(a._matrix[b]!=g[b])return a._isIdentity=!1;return this._isIdentity=!0},b.a.get=function(){return this.m11},b.b.get=function(){return this.m12},b.c.get=function(){return this.m21},b.d.get=function(){return this.m22},b.e.get=function(){return this.m41},b.f.get=function(){return this.m42},b.m11.get=function(){return this._matrix[0]},b.m12.get=function(){return this._matrix[4]},b.m13.get=function(){return this._matrix[8]},b.m14.get=function(){return this._matrix[12]},b.m21.get=function(){return this._matrix[1]},b.m22.get=function(){return this._matrix[5]},b.m23.get=function(){return this._matrix[9]},b.m24.get=function(){return this._matrix[13]},b.m31.get=function(){return this._matrix[2]},b.m32.get=function(){return this._matrix[6]},b.m33.get=function(){return this._matrix[10]},b.m34.get=function(){return this._matrix[14]},b.m41.get=function(){return this._matrix[3]},b.m42.get=function(){return this._matrix[7]},b.m43.get=function(){return this._matrix[11]},b.m44.get=function(){return this._matrix[15]},Object.defineProperties(a.prototype,b),a}())}b.b=d,c.d(b,'a',function(){return h});var e=c(0),f=c(2);const g=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];var h=null;d()},function(a,b){'use strict';function c(a,b){const c=a.length;6===c?(b.m11=a[0],b.m12=a[1],b.m21=a[2],b.m22=a[3],b.m41=a[4],b.m42=a[5]):16===c&&(b.m11=a[0],b.m12=a[1],b.m13=a[2],b.m14=a[3],b.m21=a[4],b.m22=a[5],b.m23=a[6],b.m24=a[7],b.m31=a[8],b.m32=a[9],b.m33=a[10],b.m34=a[11],b.m41=a[12],b.m42=a[13],b.m43=a[14],b.m44=a[15])}function d(a){return Math.PI/180*a}b.b=function(a,b,d){e[0]=a.m11*b.m11+a.m21*b.m12+a.m31*b.m13+a.m41*b.m14,e[4]=a.m11*b.m21+a.m21*b.m22+a.m31*b.m23+a.m41*b.m24,e[8]=a.m11*b.m31+a.m21*b.m32+a.m31*b.m33+a.m41*b.m34,e[12]=a.m11*b.m41+a.m21*b.m42+a.m31*b.m43+a.m41*b.m44,e[1]=a.m12*b.m11+a.m22*b.m12+a.m32*b.m13+a.m42*b.m14,e[5]=a.m12*b.m21+a.m22*b.m22+a.m32*b.m23+a.m42*b.m24,e[9]=a.m12*b.m31+a.m22*b.m32+a.m32*b.m33+a.m42*b.m34,e[13]=a.m12*b.m41+a.m22*b.m42+a.m32*b.m43+a.m42*b.m44,e[2]=a.m13*b.m11+a.m23*b.m12+a.m33*b.m13+a.m43*b.m14,e[6]=a.m13*b.m21+a.m23*b.m22+a.m33*b.m23+a.m43*b.m24,e[10]=a.m13*b.m31+a.m23*b.m32+a.m33*b.m33+a.m43*b.m34,e[14]=a.m13*b.m41+a.m23*b.m42+a.m33*b.m43+a.m43*b.m44,e[3]=a.m14*b.m11+a.m24*b.m12+a.m34*b.m13+a.m44*b.m14,e[7]=a.m14*b.m21+a.m24*b.m22+a.m34*b.m23+a.m44*b.m24,e[11]=a.m14*b.m31+a.m24*b.m32+a.m34*b.m33+a.m44*b.m34,e[15]=a.m14*b.m41+a.m24*b.m42+a.m34*b.m43+a.m44*b.m44,c(e,d)},b.a=c,b.c=function(a,b,c,e){var f=Math.sin,g=Math.cos,h=Math.pow;const i=d(e/2);return[1-2*(b*b+c*c)*h(f(i),2),2*(a*b*h(f(i),2)+c*f(i)*g(i)),2*(a*c*h(f(i),2)-b*f(i)*g(i)),0,2*(a*b*h(f(i),2)-c*f(i)*g(i)),1-2*(a*a+c*c)*h(f(i),2),2*(b*c*h(f(i),2)+a*f(i)*g(i)),0,2*(a*c*h(f(i),2)+b*f(i)*g(i)),2*(b*c*h(f(i),2)-a*f(i)*g(i)),1-2*(a*a+b*b)*h(f(i),2),0,0,0,0,1]};const e=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},function(a,b,c){a.exports=c(4)},function(a,b,c){'use strict';Object.defineProperty(b,'__esModule',{value:!0}),function(a){var d=c(0),e=c(1),f=c(6);c.d(b,'DOMMatrix',function(){return d.a}),c.d(b,'DOMMatrixReadOnly',function(){return e.a}),c.d(b,'DOMPoint',function(){return f.a}),c.d(b,'DOMPointReadOnly',function(){return f.b});let g=null;'undefined'==typeof window?'undefined'!=typeof a&&(g=a):g=window,g&&(g.DOMMatrix=d.a,g.DOMMatrixReadOnly=e.a,g.DOMPoint=f.a,g.DOMPointReadOnly=f.b)}.call(b,c(5))},function(a){var b=function(){return this}();try{b=b||Function('return this')()||(1,eval)('this')}catch(a){'object'==typeof window&&(b=window)}a.exports=b},function(a,b,c){'use strict';function d(a){return!('object'!=typeof a)&&'x'in a&&'y'in a&&'z'in a&&'w'in a}c.d(b,'b',function(){return g}),c.d(b,'a',function(){return i});let e;const f=function(a){if(!e){e=new WeakMap;let b={};return e.set(a,b),b}let b=e.get(a);return void 0===b&&(b={},e.set(a,b)),b};var g=function(a,b,c,e){if(1===arguments.length){if(!d(a))throw new TypeError('Expected an object with x, y, z, and w properties');f(this).x=a.x,f(this).y=a.y,f(this).z=a.z,f(this).w=a.w}else if(4===arguments.length)f(this).x=a||0,f(this).y=b||0,f(this).z=c||0,f(this).w=e||0;else throw new TypeError('Expected 1 or 4 arguments')},h={x:{},y:{},z:{},w:{}};h.x.get=function(){return f(this).x},h.y.get=function(){return f(this).y},h.z.get=function(){return f(this).z},h.w.get=function(){return f(this).w},g.prototype.matrixTransform=function(){let a=new this.constructor(this);return a},g.fromPoint=function(a){return new this(a)},Object.defineProperties(g.prototype,h);var i=function(a){function b(){a.apply(this,arguments)}a&&(b.__proto__=a),b.prototype=Object.create(a&&a.prototype),b.prototype.constructor=b;var c={x:{},y:{},z:{},w:{}};return c.x.set=function(a){f(this).x=a},c.y.set=function(a){f(this).y=a},c.z.set=function(a){f(this).z=a},c.w.set=function(a){f(this).w=a},Object.defineProperties(b.prototype,c),b}(g)}])});
-//# sourceMappingURL=global.js.map
+var __geometryInterfaces__ = (function (exports) {
+'use strict';
+
+// A reusable array, to avoid allocating new arrays during multiplication.
+// in column-major order:
+const scratch = [
+    /*m11*/0, /*m12*/0, /*m13*/0, /*m14*/0,
+    /*m21*/0, /*m22*/0, /*m23*/0, /*m24*/0,
+    /*m31*/0, /*m32*/0, /*m33*/0, /*m34*/0,
+    /*m41*/0, /*m42*/0, /*m43*/0, /*m44*/0 ];
+
+function multiplyAndApply(A, B, target) {
+
+    //XXX: Are the following calculations faster hard coded (current), or as a loop?
+
+    scratch[0]  = (A.m11 * B.m11) + (A.m21 * B.m12) + (A.m31 * B.m13) + (A.m41 * B.m14);
+    scratch[4]  = (A.m11 * B.m21) + (A.m21 * B.m22) + (A.m31 * B.m23) + (A.m41 * B.m24);
+    scratch[8]  = (A.m11 * B.m31) + (A.m21 * B.m32) + (A.m31 * B.m33) + (A.m41 * B.m34);
+    scratch[12] = (A.m11 * B.m41) + (A.m21 * B.m42) + (A.m31 * B.m43) + (A.m41 * B.m44);
+
+    scratch[1]  = (A.m12 * B.m11) + (A.m22 * B.m12) + (A.m32 * B.m13) + (A.m42 * B.m14);
+    scratch[5]  = (A.m12 * B.m21) + (A.m22 * B.m22) + (A.m32 * B.m23) + (A.m42 * B.m24);
+    scratch[9]  = (A.m12 * B.m31) + (A.m22 * B.m32) + (A.m32 * B.m33) + (A.m42 * B.m34);
+    scratch[13] = (A.m12 * B.m41) + (A.m22 * B.m42) + (A.m32 * B.m43) + (A.m42 * B.m44);
+
+    scratch[2]  = (A.m13 * B.m11) + (A.m23 * B.m12) + (A.m33 * B.m13) + (A.m43 * B.m14);
+    scratch[6]  = (A.m13 * B.m21) + (A.m23 * B.m22) + (A.m33 * B.m23) + (A.m43 * B.m24);
+    scratch[10] = (A.m13 * B.m31) + (A.m23 * B.m32) + (A.m33 * B.m33) + (A.m43 * B.m34);
+    scratch[14] = (A.m13 * B.m41) + (A.m23 * B.m42) + (A.m33 * B.m43) + (A.m43 * B.m44);
+
+    scratch[3]  = (A.m14 * B.m11) + (A.m24 * B.m12) + (A.m34 * B.m13) + (A.m44 * B.m14);
+    scratch[7]  = (A.m14 * B.m21) + (A.m24 * B.m22) + (A.m34 * B.m23) + (A.m44 * B.m24);
+    scratch[11] = (A.m14 * B.m31) + (A.m24 * B.m32) + (A.m34 * B.m33) + (A.m44 * B.m34);
+    scratch[15] = (A.m14 * B.m41) + (A.m24 * B.m42) + (A.m34 * B.m43) + (A.m44 * B.m44);
+
+    applyArrayValuesToDOMMatrix(scratch, target);
+}
+
+function applyArrayValuesToDOMMatrix(array, matrix) {
+    const length = array.length;
+
+    if (length === 6) {
+        matrix.m11 = array[0];
+        matrix.m12 = array[1];
+        matrix.m21 = array[2];
+        matrix.m22 = array[3];
+        matrix.m41 = array[4];
+        matrix.m42 = array[5];
+    }
+    else if (length === 16) {
+        matrix.m11 = array[0];
+        matrix.m12 = array[1];
+        matrix.m13 = array[2];
+        matrix.m14 = array[3];
+        matrix.m21 = array[4];
+        matrix.m22 = array[5];
+        matrix.m23 = array[6];
+        matrix.m24 = array[7];
+        matrix.m31 = array[8];
+        matrix.m32 = array[9];
+        matrix.m33 = array[10];
+        matrix.m34 = array[11];
+        matrix.m41 = array[12];
+        matrix.m42 = array[13];
+        matrix.m43 = array[14];
+        matrix.m44 = array[15];
+    }
+}
+
+function rotateAxisAngleArray(x, y, z, angle) {
+    var sin = Math.sin;
+    var cos = Math.cos;
+    var pow = Math.pow;
+
+    const halfAngle = degreesToRadians(angle/2);
+
+    // TODO: should we provide a 6-item array here to signify 2D when the
+    // rotation is about the Z axis (for example when calling rotateSelf)?
+    // TODO: Performance can be improved by first detecting when x, y, or z of
+    // the axis are zero or 1, and using a pre-simplified version of the
+    // folowing math based on that condition.
+    // TODO: Performance can be improved by using different equations (use trig
+    // identities to find alternate formulas).
+    return [
+        1-2*(y*y + z*z)*pow(sin(halfAngle), 2),                           2*(x*y*pow(sin(halfAngle), 2) + z*sin(halfAngle)*cos(halfAngle)), 2*(x*z*pow(sin(halfAngle), 2) - y*sin(halfAngle)*cos(halfAngle)), 0,
+        2*(x*y*pow(sin(halfAngle), 2) - z*sin(halfAngle)*cos(halfAngle)), 1-2*(x*x + z*z)*pow(sin(halfAngle), 2),                           2*(y*z*pow(sin(halfAngle), 2) + x*sin(halfAngle)*cos(halfAngle)), 0,
+        2*(x*z*pow(sin(halfAngle), 2) + y*sin(halfAngle)*cos(halfAngle)), 2*(y*z*pow(sin(halfAngle), 2) - x*sin(halfAngle)*cos(halfAngle)), 1-2*(x*x + y*y)*pow(sin(halfAngle), 2),                           0,
+        0,                                                                0,                                                                0,                                                                1 ]
+}
+
+function degreesToRadians(degrees) {
+    return Math.PI/180 * degrees
+}
+
+// This matrix is represented internally in row-major format so that it is easy
+// to look at visually. In a pair of coordinates (as in "m23") the first number
+// is the column and the second is the row (so "m23" means column 2 row 3).
+const identity = [
+    /*m11*/1, /*m21*/0, /*m31*/0, /*m41*/0,
+    /*m12*/0, /*m22*/1, /*m32*/0, /*m42*/0,
+    /*m13*/0, /*m23*/0, /*m33*/1, /*m43*/0,
+    /*m14*/0, /*m24*/0, /*m34*/0, /*m44*/1 ];
+
+exports.DOMMatrixReadOnly = null;
+
+function initDOMMatrixReadOnly() {
+    if (exports.DOMMatrixReadOnly) { return }
+
+    exports.DOMMatrixReadOnly = (function () {
+        function DOMMatrixReadOnly(numberSequence) {
+        if ( numberSequence === void 0 ) numberSequence = [];
+
+            if (!(this instanceof DOMMatrix))
+                { throw new TypeError("DOMMatrixReadOnly can't be instantiated directly. Use DOMMatrix instead.") }
+
+            var length = numberSequence.length;
+
+            if (length === undefined || !(length === 6 || length === 16))
+                { throw new TypeError('DOMMatrix constructor argument "numberSequence" must be an array-like with 6 or 16 numbers.') }
+
+            this._matrix = new Float64Array(identity);
+            this._isIdentity = true;
+            this._is2D = length === 6 ? true : false;
+
+            applyArrayValuesToDOMMatrix(numberSequence, this);
+        }
+
+        var prototypeAccessors = { is2D: {},isIdentity: {},a: {},b: {},c: {},d: {},e: {},f: {},m11: {},m12: {},m13: {},m14: {},m21: {},m22: {},m23: {},m24: {},m31: {},m32: {},m33: {},m34: {},m41: {},m42: {},m43: {},m44: {} };
+
+        // Immutable transform methods -------------------------------------------
+
+        DOMMatrixReadOnly.prototype.translate = function translate (tx, ty, tz) {
+            if ( tz === void 0 ) tz = 0;
+
+            return new DOMMatrix(this).translateSelf(tx, ty, tz)
+        };
+
+        DOMMatrixReadOnly.prototype.scale = function scale (scale$1, originX, originY) {
+            if ( originX === void 0 ) originX = 0;
+            if ( originY === void 0 ) originY = 0;
+
+            return new DOMMatrix(this).scaleSelf(scale$1, originX, originY)
+        };
+
+        DOMMatrixReadOnly.prototype.scale3d = function scale3d (scale, originX, originY, originZ) {
+            if ( originX === void 0 ) originX = 0;
+            if ( originY === void 0 ) originY = 0;
+            if ( originZ === void 0 ) originZ = 0;
+
+            return new DOMMatrix(this).scale3dSelf(scale, originX, originY, originZ)
+        };
+
+        DOMMatrixReadOnly.prototype.scaleNonUniform = function scaleNonUniform (scaleX, scaleY, scaleZ, originX, originY, originZ) {
+            if ( scaleY === void 0 ) scaleY = 1;
+            if ( scaleZ === void 0 ) scaleZ = 1;
+            if ( originX === void 0 ) originX = 0;
+            if ( originY === void 0 ) originY = 0;
+            if ( originZ === void 0 ) originZ = 0;
+
+            return new DOMMatrix(this).scaleNonUniformSelf(scaleX, scaleY, scaleZ, originX, originY, originZ)
+        };
+
+        DOMMatrixReadOnly.prototype.rotate = function rotate (angle, originX, originY) {
+            if ( originX === void 0 ) originX = 0;
+            if ( originY === void 0 ) originY = 0;
+
+            return new DOMMatrix(this).rotateSelf(angle, originX, originY)
+        };
+
+        // TODO
+        DOMMatrixReadOnly.prototype.rotateFromVector = function rotateFromVector (x, y) {
+            throw new Error('rotateFromVector is not implemented yet.')
+        };
+
+        DOMMatrixReadOnly.prototype.rotateAxisAngle = function rotateAxisAngle (x, y, z, angle) {
+            return new DOMMatrix(this).rotateAxisAngleSelf(x, y, z, angle)
+        };
+
+        DOMMatrixReadOnly.prototype.skewX = function skewX (sx) {
+            throw new Error('skewX is not implemented yet.')
+        };
+        DOMMatrixReadOnly.prototype.skewY = function skewY (sy) {
+            throw new Error('skewY is not implemented yet.')
+        };
+
+        DOMMatrixReadOnly.prototype.multiply = function multiply (other) {
+            return new DOMMatrix(this).multiplySelf(other)
+        };
+
+        DOMMatrixReadOnly.prototype.flipX = function flipX () {
+            throw new Error('flipX is not implemented yet.')
+        };
+        DOMMatrixReadOnly.prototype.flipY = function flipY () {
+            throw new Error('flipY is not implemented yet.')
+        };
+        DOMMatrixReadOnly.prototype.inverse = function inverse () {
+            throw new Error('inverse is not implemented yet.')
+        };
+
+        DOMMatrixReadOnly.prototype.transformPoint = function transformPoint (/*optional DOMPointInit*/ point) {
+            throw new Error('transformPoint is not implemented yet.')
+        };
+
+        DOMMatrixReadOnly.prototype.toFloat32Array = function toFloat32Array () {
+            return Float32Array.from(this._matrix)
+        };
+        DOMMatrixReadOnly.prototype.toFloat64Array = function toFloat64Array () {
+            return Float64Array.from(this._matrix)
+        };
+
+        //stringifier() {} // What's this?
+
+        prototypeAccessors.is2D.get = function () {
+            return this._is2D
+        };
+
+        /*
+         * TODO: make sure this matches the spec.
+         * TODO: Instead of calculating here, perhaps calculate and set
+         * this._isIdentity in other operations, and simply return the internal one
+         * here.
+         */
+        prototypeAccessors.isIdentity.get = function () {
+            var this$1 = this;
+
+            for (var i = 0, len = this._matrix.length; i < len; i+=1) {
+                if (this$1._matrix[i] != identity[i])
+                    { return (this$1._isIdentity = false) }
+            }
+
+            return (this._isIdentity = true)
+        };
+
+        prototypeAccessors.a.get = function () { return this.m11 };
+        prototypeAccessors.b.get = function () { return this.m12 };
+        prototypeAccessors.c.get = function () { return this.m21 };
+        prototypeAccessors.d.get = function () { return this.m22 };
+        prototypeAccessors.e.get = function () { return this.m41 };
+        prototypeAccessors.f.get = function () { return this.m42 };
+
+        prototypeAccessors.m11.get = function () { return this._matrix[0]  };
+        prototypeAccessors.m12.get = function () { return this._matrix[4]  };
+        prototypeAccessors.m13.get = function () { return this._matrix[8]  };
+        prototypeAccessors.m14.get = function () { return this._matrix[12] };
+
+        prototypeAccessors.m21.get = function () { return this._matrix[1]  };
+        prototypeAccessors.m22.get = function () { return this._matrix[5]  };
+        prototypeAccessors.m23.get = function () { return this._matrix[9]  };
+        prototypeAccessors.m24.get = function () { return this._matrix[13] };
+
+        prototypeAccessors.m31.get = function () { return this._matrix[2]  };
+        prototypeAccessors.m32.get = function () { return this._matrix[6]  };
+        prototypeAccessors.m33.get = function () { return this._matrix[10] };
+        prototypeAccessors.m34.get = function () { return this._matrix[14] };
+
+        prototypeAccessors.m41.get = function () { return this._matrix[3]  };
+        prototypeAccessors.m42.get = function () { return this._matrix[7]  };
+        prototypeAccessors.m43.get = function () { return this._matrix[11] };
+        prototypeAccessors.m44.get = function () { return this._matrix[15] };
+
+        Object.defineProperties( DOMMatrixReadOnly.prototype, prototypeAccessors );
+
+        return DOMMatrixReadOnly;
+    }());
+}
+
+initDOMMatrixReadOnly();
+
+initDOMMatrixReadOnly();
+
+var DOMMatrix = (function (DOMMatrixReadOnly$$1) {
+    function DOMMatrix(arg) {
+        const numArgs = arguments.length;
+        if (numArgs === 0) {
+            DOMMatrixReadOnly$$1.call(this, [1, 0, 0, 1, 0, 0]);
+        }
+        else if (numArgs === 1) {
+            if (typeof arg == 'string') {
+                throw new Error('CSS transformList arg not yet implemented.')
+                // TODO validate that syntax of transformList matches transform-list (http://www.w3.org/TR/css-transforms-1/#typedef-transform-list).
+            }
+            else if (arg instanceof DOMMatrix) {
+                DOMMatrixReadOnly$$1.call(this, arg._matrix);
+            }
+            else if (arg instanceof Float32Array || arg instanceof Float64Array || arg instanceof Array) {
+                DOMMatrixReadOnly$$1.call(this, arg);
+            }
+        }
+        else {
+            throw new Error('Wrong number of arguments to DOMMatrix constructor.')
+        }
+    }
+
+    if ( DOMMatrixReadOnly$$1 ) DOMMatrix.__proto__ = DOMMatrixReadOnly$$1;
+    DOMMatrix.prototype = Object.create( DOMMatrixReadOnly$$1 && DOMMatrixReadOnly$$1.prototype );
+    DOMMatrix.prototype.constructor = DOMMatrix;
+
+    var prototypeAccessors = { a: {},b: {},c: {},d: {},e: {},f: {},m11: {},m12: {},m13: {},m14: {},m21: {},m22: {},m23: {},m24: {},m31: {},m32: {},m33: {},m34: {},m41: {},m42: {},m43: {},m44: {} };
+
+    // Mutable transform methods
+    DOMMatrix.prototype.multiplySelf = function multiplySelf (other) {
+        if (!(other instanceof DOMMatrix))
+            { throw new Error('The argument to multiplySelf must be an instance of DOMMatrix') }
+
+        // TODO: avoid creating a new array, just apply values directly.
+        multiplyAndApply(this, other, this);
+
+        if (!other.is2D) { this._is2D = false; }
+
+        return this
+    };
+
+    DOMMatrix.prototype.preMultiplySelf = function preMultiplySelf (other) {
+        if (!(other instanceof DOMMatrix))
+            { throw new Error('The argument to multiplySelf must be an instance of DOMMatrix') }
+
+        // TODO: avoid creating a new array, just apply values directly.
+        multiplyAndApply(other, this, this);
+
+        if (!other.is2D) { this._is2D = false; }
+
+        return this
+    };
+
+    DOMMatrix.prototype.translateSelf = function translateSelf (tx, ty, tz) {
+        if ( tz === void 0 ) tz = 0;
+
+        // TODO: check args are numbers
+
+        if (arguments.length === 1)
+            { throw new Error('The first two arguments (X and Y translation values) are required (the third, Z translation, is optional).') }
+
+        // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#Translate3dDefined
+        const translationMatrix = new DOMMatrix([
+            // column-major:
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            tx,ty,tz,1 ]);
+
+        this.multiplySelf(translationMatrix);
+
+        if (tz != 0) {
+            this._is2D = false;
+        }
+
+        return this
+    };
+
+    DOMMatrix.prototype.scaleSelf = function scaleSelf (scale, originX, originY) {
+        if ( originX === void 0 ) originX = 0;
+        if ( originY === void 0 ) originY = 0;
+
+        this.translateSelf(originX, originY);
+
+        this.multiplySelf(new DOMMatrix([
+            // 2D:
+            /*a*/scale, /*b*/0,
+            /*c*/0,     /*d*/scale,
+            /*e*/0,     /*f*/0 ]));
+
+        this.translateSelf(-originX, -originY);
+        return this
+    };
+
+    DOMMatrix.prototype.scale3dSelf = function scale3dSelf (scale, originX, originY, originZ) {
+        if ( originX === void 0 ) originX = 0;
+        if ( originY === void 0 ) originY = 0;
+        if ( originZ === void 0 ) originZ = 0;
+
+        this.translateSelf(originX, originY, originZ);
+
+        this.multiplySelf(new DOMMatrix([
+            // 3D
+            scale, 0,     0,     0,
+            0,     scale, 0,     0,
+            0,     0,     scale, 0,
+            0,     0,     0,     1 ]));
+
+        this.translateSelf(-originX, -originY, -originZ);
+        return this
+    };
+
+    DOMMatrix.prototype.scaleNonUniformSelf = function scaleNonUniformSelf (scaleX, scaleY, scaleZ, originX, originY, originZ) {
+        if ( scaleY === void 0 ) scaleY = 1;
+        if ( scaleZ === void 0 ) scaleZ = 1;
+        if ( originX === void 0 ) originX = 0;
+        if ( originY === void 0 ) originY = 0;
+        if ( originZ === void 0 ) originZ = 0;
+
+        this.translateSelf(originX, originY, originZ);
+
+        this.multiplySelf(new DOMMatrix([
+            // 3D
+            scaleX, 0,      0,      0,
+            0,      scaleY, 0,      0,
+            0,      0,      scaleZ, 0,
+            0,      0,      0,      1 ]));
+
+        this.translateSelf(-originX, -originY, -originZ);
+
+        if (scaleZ !== 1 || originZ !== 0) { this._is2D = false; }
+
+        return this
+    };
+
+    DOMMatrix.prototype.rotateSelf = function rotateSelf (angle, originX, originY) {
+        if ( originX === void 0 ) originX = 0;
+        if ( originY === void 0 ) originY = 0;
+
+        this.translateSelf(originX, originY);
+
+        // axis of rotation
+        var ref = [0,0,1];
+        var x = ref[0];
+        var y = ref[1];
+        var z = ref[2]; // We're rotating around the Z axis.
+
+        this.rotateAxisAngleSelf(x, y, z, angle);
+
+        this.translateSelf(-originX, -originY);
+        return this
+    };
+
+    // TODO
+    DOMMatrix.prototype.rotateFromVectorSelf = function rotateFromVectorSelf (x, y) {
+        throw new Error('rotateFromVectorSelf is not implemented yet.')
+    };
+
+    DOMMatrix.prototype.rotateAxisAngleSelf = function rotateAxisAngleSelf (x, y, z, angle) {
+        const rotationMatrix = new DOMMatrix(rotateAxisAngleArray(x,y,z,angle));
+        this.multiplySelf(rotationMatrix);
+        return this
+    };
+
+    DOMMatrix.prototype.skewXSelf = function skewXSelf (sx) {
+        throw new Error('skewXSelf is not implemented yet.')
+    };
+
+    DOMMatrix.prototype.skewYSelf = function skewYSelf (sy) {
+        throw new Error('skewYSelf is not implemented yet.')
+    };
+
+    DOMMatrix.prototype.invertSelf = function invertSelf () {
+        throw new Error('invertSelf is not implemented yet.')
+    };
+
+    DOMMatrix.prototype.setMatrixValue = function setMatrixValue (/*DOMString*/ transformList) {
+        throw new Error('setMatrixValue is not implemented yet.')
+    };
+
+    prototypeAccessors.a.get = function () { return this.m11 };
+    prototypeAccessors.b.get = function () { return this.m12 };
+    prototypeAccessors.c.get = function () { return this.m21 };
+    prototypeAccessors.d.get = function () { return this.m22 };
+    prototypeAccessors.e.get = function () { return this.m41 };
+    prototypeAccessors.f.get = function () { return this.m42 };
+
+    prototypeAccessors.m11.get = function () { return this._matrix[0]  };
+    prototypeAccessors.m12.get = function () { return this._matrix[4]  };
+    prototypeAccessors.m13.get = function () { return this._matrix[8]  };
+    prototypeAccessors.m14.get = function () { return this._matrix[12] };
+
+    prototypeAccessors.m21.get = function () { return this._matrix[1]  };
+    prototypeAccessors.m22.get = function () { return this._matrix[5]  };
+    prototypeAccessors.m23.get = function () { return this._matrix[9]  };
+    prototypeAccessors.m24.get = function () { return this._matrix[13] };
+
+    prototypeAccessors.m31.get = function () { return this._matrix[2]  };
+    prototypeAccessors.m32.get = function () { return this._matrix[6]  };
+    prototypeAccessors.m33.get = function () { return this._matrix[10] };
+    prototypeAccessors.m34.get = function () { return this._matrix[14] };
+
+    prototypeAccessors.m41.get = function () { return this._matrix[3]  };
+    prototypeAccessors.m42.get = function () { return this._matrix[7]  };
+    prototypeAccessors.m43.get = function () { return this._matrix[11] };
+    prototypeAccessors.m44.get = function () { return this._matrix[15] };
+
+    prototypeAccessors.a.set = function (value) { this.m11 = value; };
+    prototypeAccessors.b.set = function (value) { this.m12 = value; };
+    prototypeAccessors.c.set = function (value) { this.m21 = value; };
+    prototypeAccessors.d.set = function (value) { this.m22 = value; };
+    prototypeAccessors.e.set = function (value) { this.m41 = value; };
+    prototypeAccessors.f.set = function (value) { this.m42 = value; };
+
+    prototypeAccessors.m11.set = function (value) { this._matrix[0]  = value; };
+    prototypeAccessors.m12.set = function (value) { this._matrix[4]  = value; };
+    prototypeAccessors.m13.set = function (value) { this._matrix[8]  = value; };
+    prototypeAccessors.m14.set = function (value) { this._matrix[12] = value; };
+
+    prototypeAccessors.m21.set = function (value) { this._matrix[1]  = value; };
+    prototypeAccessors.m22.set = function (value) { this._matrix[5]  = value; };
+    prototypeAccessors.m23.set = function (value) { this._matrix[9]  = value; };
+    prototypeAccessors.m24.set = function (value) { this._matrix[13] = value; };
+
+    prototypeAccessors.m31.set = function (value) { this._matrix[2]  = value; };
+    prototypeAccessors.m32.set = function (value) { this._matrix[6]  = value; };
+    prototypeAccessors.m33.set = function (value) { this._matrix[10] = value; };
+    prototypeAccessors.m34.set = function (value) { this._matrix[14] = value; };
+
+    prototypeAccessors.m41.set = function (value) { this._matrix[3]  = value; };
+    prototypeAccessors.m42.set = function (value) { this._matrix[7]  = value; };
+    prototypeAccessors.m43.set = function (value) { this._matrix[11] = value; };
+    prototypeAccessors.m44.set = function (value) { this._matrix[15] = value; };
+
+    Object.defineProperties( DOMMatrix.prototype, prototypeAccessors );
+
+    return DOMMatrix;
+}(exports.DOMMatrixReadOnly));
+
+let privatesMap;
+const _ = function (o) {
+    if (!privatesMap) {
+        privatesMap = new WeakMap;
+        let privates = {};
+        privatesMap.set(o, privates);
+        return privates
+    }
+    else {
+        let privates = privatesMap.get(o);
+
+        if (privates === undefined) {
+            privates = {};
+            privatesMap.set(o, privates);
+        }
+
+        return privates
+    }
+};
+
+var DOMPointReadOnly = function DOMPointReadOnly(x,y,z,w) {
+    if (arguments.length === 1) {
+        if (!isDOMPointInit(x))
+            { throw new TypeError('Expected an object with x, y, z, and w properties') }
+
+        _(this).x = x.x;
+        _(this).y = x.y;
+        _(this).z = x.z;
+        _(this).w = x.w;
+    }
+    else if (arguments.length === 4)  {
+        _(this).x = x || 0;
+        _(this).y = y || 0;
+        _(this).z = z || 0;
+        _(this).w = w || 0;
+    }
+    else {
+        throw new TypeError('Expected 1 or 4 arguments')
+    }
+};
+
+var prototypeAccessors = { x: {},y: {},z: {},w: {} };
+
+prototypeAccessors.x.get = function () { return _(this).x };
+prototypeAccessors.y.get = function () { return _(this).y };
+prototypeAccessors.z.get = function () { return _(this).z };
+prototypeAccessors.w.get = function () { return _(this).w };
+
+DOMPointReadOnly.prototype.matrixTransform = function matrixTransform (matrix) {
+    let result = new this.constructor(this);
+    // TODO
+    //const x
+    //const y
+    //const z
+    //const w
+
+    return result
+};
+
+DOMPointReadOnly.fromPoint = function fromPoint (other) {
+    return new this(other)
+};
+
+Object.defineProperties( DOMPointReadOnly.prototype, prototypeAccessors );
+
+var DOMPoint = (function (DOMPointReadOnly) {
+    function DOMPoint () {
+        DOMPointReadOnly.apply(this, arguments);
+    }
+
+    if ( DOMPointReadOnly ) DOMPoint.__proto__ = DOMPointReadOnly;
+    DOMPoint.prototype = Object.create( DOMPointReadOnly && DOMPointReadOnly.prototype );
+    DOMPoint.prototype.constructor = DOMPoint;
+
+    var prototypeAccessors$1 = { x: {},y: {},z: {},w: {} };
+
+    prototypeAccessors$1.x.set = function (value) { _(this).x = value; };
+    prototypeAccessors$1.y.set = function (value) { _(this).y = value; };
+    prototypeAccessors$1.z.set = function (value) { _(this).z = value; };
+    prototypeAccessors$1.w.set = function (value) { _(this).w = value; };
+
+    Object.defineProperties( DOMPoint.prototype, prototypeAccessors$1 );
+
+    return DOMPoint;
+}(DOMPointReadOnly));
+
+function isDOMPointInit(o) {
+    if (typeof o != 'object') { return false }
+
+    if (
+        'x' in o &&
+        'y' in o &&
+        'z' in o &&
+        'w' in o
+    ) { return true }
+
+    return false
+}
+
+let _global = null;
+
+// browser
+if (typeof window != 'undefined') {
+    _global = window;
+}
+else if (typeof global != 'undefined') {
+    _global = global;
+}
+
+if (_global) {
+    _global.DOMMatrix = DOMMatrix;
+    _global.DOMMatrixReadOnly = exports.DOMMatrixReadOnly;
+    _global.DOMPoint = DOMPoint;
+    _global.DOMPointReadOnly = DOMPointReadOnly;
+}
+
+exports.DOMMatrix = DOMMatrix;
+exports.DOMPoint = DOMPoint;
+exports.DOMPointReadOnly = DOMPointReadOnly;
+
+return exports;
+
+}({}));
